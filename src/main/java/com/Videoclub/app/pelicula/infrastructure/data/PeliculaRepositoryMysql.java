@@ -13,11 +13,11 @@ public class PeliculaRepositoryMysql implements PeliculaRepository {
     Connection con = ConexionBD.getCon();
 
     @Override
-    public List<Pelicula> getAll() {
+    public List<Pelicula> getAll(Integer id) {
 
         List <Pelicula> list = new ArrayList<>();
 
-        String consulta = "SELECT * FROM peliculas";
+        String consulta = "SELECT * FROM peliculas WHERE id_usuario=" + id + ";";
 
         try {
             Statement stm = con.createStatement();
@@ -40,14 +40,14 @@ public class PeliculaRepositoryMysql implements PeliculaRepository {
     }
 
     @Override
-    public void addPelicula(Integer id, String nombre, String duracion) {
+    public void addPelicula(Integer id, Pelicula pelicula) {
 
         String consulta = "INSERT INTO `peliculas`(`nombre`, `duracion`, `id_usuario`) VALUES (?,?,?)";
 
         try (PreparedStatement preparedStatement = con.prepareStatement(consulta)){
 
-            preparedStatement.setString(1,nombre);
-            preparedStatement.setString(2,duracion);
+            preparedStatement.setString(1,pelicula.getNombre());
+            preparedStatement.setString(2,pelicula.getDuracion());
             preparedStatement.setInt(3,id);
 
             preparedStatement.executeUpdate();
@@ -61,14 +61,34 @@ public class PeliculaRepositoryMysql implements PeliculaRepository {
     }
 
     @Override
-    public void actualizarPelicula() {
+    public void actualizarPelicula(String nombreActualizar,String nombreViejo) {
+
+        String consulta = "UPDATE `peliculas` SET `nombre`='" + nombreActualizar + "' WHERE nombre='" + nombreViejo + "';";
+
+        try {
+            Statement stm = con.createStatement();
+            stm.executeUpdate(consulta);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
 
 
     }
 
     @Override
-    public void deletePelicula() {
+    public void deletePelicula(String nombre) {
+
+        String consulta = "DElETE FROM peliculas WHERE nombre='" + nombre + "';";
+
+        try {
+            Statement stm = con.createStatement();
+            stm.executeUpdate(consulta);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
+

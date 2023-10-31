@@ -22,8 +22,8 @@ public class UsuarioUseCases {
         this.usuarioRepository.addUser(usuario);
     }
 
-    public void updateUsers(Integer id, String nombreNuevo){
-        this.usuarioRepository.updateUsers(id,nombreNuevo);
+    public void updateUsers(Integer id, Usuario usuario){
+        this.usuarioRepository.updateUsers(id,usuario);
     }
 
     public void deleteUser(Integer id){

@@ -14,20 +14,20 @@ public class PeliculaUseCases {
         this.peliculaRepository = peliculaRepository;
     }
 
-    public List<Pelicula> getAll(){
-        List<Pelicula> list = this.peliculaRepository.getAll();
+    public List<Pelicula> getAll(Integer id){
+        List<Pelicula> list = this.peliculaRepository.getAll(id);
         return list;
     };
 
-    public void addPelicula(Integer id, String nombre, String duracion){
-        this.peliculaRepository.addPelicula(id, nombre,duracion);
+    public void addPelicula(Integer id, Pelicula pelicula){
+        this.peliculaRepository.addPelicula(id, pelicula);
     };
 
-    public void actualizarPelicula(){
-        this.peliculaRepository.actualizarPelicula();
+    public void actualizarPelicula(String nombre, String nombreViejo){
+        this.peliculaRepository.actualizarPelicula(nombre, nombreViejo );
     };
 
-    public void deletePelicula(){
-        this.peliculaRepository.deletePelicula();
+    public void deletePelicula(String nombre){
+        this.peliculaRepository.deletePelicula(nombre);
     };
 }

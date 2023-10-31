@@ -8,7 +8,7 @@ public interface UsuarioRepository {
 
     public void addUser(Usuario usuario);
 
-    public void updateUsers(Integer id, String nombreNuevo);
+    public void updateUsers(Integer id, Usuario usuario);
 
     public void deleteUser(Integer id);
 }

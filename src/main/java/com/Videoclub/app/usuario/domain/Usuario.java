@@ -12,7 +12,7 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public int getID() {
+    public Integer getID() {
         return ID;
     }
 

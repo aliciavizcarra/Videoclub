@@ -40,15 +40,43 @@ public class UsuarioRepositoryMysql implements UsuarioRepository {
     @Override
     public void addUser(Usuario usuario) {
 
+        String consulta = "INSERT INTO usuarios(`ID`, `nombre`) VALUES (" + usuario.getID() + ",'" + usuario.getNombre() + "');";
+
+        try {
+            Statement stm = con.createStatement();
+            stm.executeUpdate(consulta);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
-    public void updateUsers(Integer id, String nombreNuevo) {
+    public void updateUsers(Integer id, Usuario usuario) {
+
+        String consulta = "UPDATE `usuarios` SET `nombre`='" + usuario.getNombre() + "' WHERE ID=" + id + ";";
+
+        try {
+            Statement stm = con.createStatement();
+            stm.executeUpdate(consulta);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
     @Override
     public void deleteUser(Integer id) {
+
+        String consulta = "DElETE FROM usuarios WHERE ID=" + id + ";";
+
+        try {
+            Statement stm = con.createStatement();
+            stm.executeUpdate(consulta);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
