@@ -8,11 +8,10 @@ public interface UsuarioRepository {
 
     public void addUser(Usuario usuario);
 
-    public void updateUsers(Integer id, Usuario usuario);
+    public void updateUsers(Usuario usuario);
 
     public void deleteUser(Integer id);
 
     public void deleteAll();
 
-    public Usuario getUserFromID();
 }

@@ -93,7 +93,7 @@ public class PeliculaRepositoryMysql implements PeliculaRepository {
 
     @Override
     public void deleteAll() {
-        String consulta = "DELETE * FROM peliculas";
+        String consulta = "DELETE FROM peliculas;";
 
         try {
             Statement stm = con.createStatement();

@@ -29,7 +29,7 @@ public class UsuarioRepositoryMysql implements UsuarioRepository {
                 String nombre = rs.getString("nombre");
                 Integer id = rs.getInt("ID");
 
-                list.add(new Usuario(id,nombre));
+                list.add(new Usuario(id,nombre) );
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -52,9 +52,9 @@ public class UsuarioRepositoryMysql implements UsuarioRepository {
     }
 
     @Override
-    public void updateUsers(Integer id, Usuario usuario) {
+    public void updateUsers(Usuario usuario) {
 
-        String consulta = "UPDATE `usuarios` SET `nombre`='" + usuario.getNombre() + "' WHERE ID=" + id + ";";
+        String consulta = "UPDATE `usuarios` SET `nombre`='" + usuario.getNombre() + "' WHERE ID=" + usuario.getID() + ";";
 
         try {
             Statement stm = con.createStatement();
@@ -82,14 +82,13 @@ public class UsuarioRepositoryMysql implements UsuarioRepository {
 
     @Override
     public void deleteAll() {
-        String consulta = "DELETE * FROM usuarios";
-
+        String consulta = "DELETE FROM `usuarios`; ";
         try {
             Statement stm = con.createStatement();
             stm.executeUpdate(consulta);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
+
 }

@@ -34,7 +34,7 @@ public class UsuarioController {
 
     @PutMapping("/usuarios/{id}")
     public List<Usuario> usuariosactualizados(@PathVariable Integer id, @RequestBody Usuario usuario){
-        this.usuarioUseCases.updateUsers(id, usuario);
+        this.usuarioUseCases.updateUsers(usuario);
         List<Usuario> list = this.usuarioUseCases.getAll();
         return list;
     }

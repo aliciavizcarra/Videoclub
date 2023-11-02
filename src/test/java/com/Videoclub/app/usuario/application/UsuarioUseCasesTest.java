@@ -42,26 +42,37 @@ class UsuarioUseCasesTest {
        Usuario usuario = new Usuario(null,"Marisa Lopez");
        this.usuarioUseCases.addUser(usuario);
 
-       Usuario usuarioNuevo = new Usuario(null,"Pablo Gonzalez");
+       Integer id = this.usuarioUseCases.getIDfromUser(usuario.getNombre());
 
-       Usuario usuarioActualizado= null;
-       this.usuarioUseCases.updateUsers(id,usuario);
+       Usuario usuarioNuevo = new Usuario(id,"Pablo Gonzalez");
 
-       //le asigno al usuario vacio el nombre que espero recibir en el assertEquals
+       this.usuarioUseCases.updateUsers(usuarioNuevo);
+       //Hasta aqui la actualizacion del usuario, ahora comprobamos si se ha actualizado
+
+        String nombreActualizado= null;
+
         List<Usuario> list = this.usuarioUseCases.getAll();
         for (Usuario usuario1: list) {
-            if (usuario1.getNombre().equals(usuario.getNombre())){
-                usuarioActualizado= new Usuario(null,usuario.getNombre());
+            if (usuario1.getID().equals(usuarioNuevo.getID())){
+
+                nombreActualizado = usuarioNuevo.getNombre();
             }
         }
 
-       assertEquals("Marisa Lopez",usuarioActualizado.getNombre());
+       assertEquals("Pablo Gonzalez",nombreActualizado);
     }
 
     @Test
     void deleteUser() {
+
+        Usuario usuario = new Usuario(null,"Marisa Lopez");
+        this.usuarioUseCases.addUser(usuario);
+
+        Integer id = this.usuarioUseCases.getIDfromUser(usuario.getNombre());
+        this.usuarioUseCases.deleteUser(id);
+
         List<Usuario> list = this.usuarioUseCases.getAll();
-        this.usuarioUseCases.deleteUser(8);
-        assertEquals(6,list.size());
+
+        assertEquals(0,list.size());
     }
 }

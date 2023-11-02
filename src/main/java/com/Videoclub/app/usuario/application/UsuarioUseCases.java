@@ -22,8 +22,8 @@ public class UsuarioUseCases {
         this.usuarioRepository.addUser(usuario);
     }
 
-    public void updateUsers(Integer id, Usuario usuario){
-        this.usuarioRepository.updateUsers(id,usuario);
+    public void updateUsers(Usuario usuario){
+        this.usuarioRepository.updateUsers(usuario);
     }
 
     public void deleteUser(Integer id){
@@ -32,5 +32,17 @@ public class UsuarioUseCases {
 
     public void deleteAll(){
         this.usuarioRepository.deleteAll();
+    }
+
+    public Integer getIDfromUser(String nombre){
+       List<Usuario> list = this.usuarioRepository.getAll();
+       Integer id = null;
+        for (Usuario usuario: list){
+            if(usuario.getNombre().equals(nombre)){
+                id= usuario.getID();
+            }
+        }
+
+        return id;
     }
 }
