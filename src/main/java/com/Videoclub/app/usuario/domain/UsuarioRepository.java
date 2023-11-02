@@ -13,4 +13,6 @@ public interface UsuarioRepository {
     public void deleteUser(Integer id);
 
     public void deleteAll();
+
+    public Usuario getUserFromID();
 }
