@@ -29,4 +29,8 @@ public class UsuarioUseCases {
     public void deleteUser(Integer id){
         this.usuarioRepository.deleteUser(id);
     }
+
+    public void deleteAll(){
+        this.usuarioRepository.deleteAll();
+    }
 }

@@ -11,4 +11,6 @@ public interface UsuarioRepository {
     public void updateUsers(Integer id, Usuario usuario);
 
     public void deleteUser(Integer id);
+
+    public void deleteAll();
 }

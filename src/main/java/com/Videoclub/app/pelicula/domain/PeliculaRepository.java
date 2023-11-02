@@ -12,6 +12,8 @@ public interface PeliculaRepository {
 
     public void deletePelicula(String nombre);
 
+    public void deleteAll();
+
 
 
 }

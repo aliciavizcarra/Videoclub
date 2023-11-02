@@ -30,4 +30,8 @@ public class PeliculaUseCases {
     public void deletePelicula(String nombre){
         this.peliculaRepository.deletePelicula(nombre);
     };
+
+    public void deleteAll(){
+        this.peliculaRepository.deleteAll();
+    }
 }

@@ -79,4 +79,17 @@ public class UsuarioRepositoryMysql implements UsuarioRepository {
         }
 
     }
+
+    @Override
+    public void deleteAll() {
+        String consulta = "DELETE * FROM usuarios";
+
+        try {
+            Statement stm = con.createStatement();
+            stm.executeUpdate(consulta);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
