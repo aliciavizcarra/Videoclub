@@ -4,6 +4,7 @@ import com.Videoclub.app.pelicula.domain.Pelicula;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Usuario {
 
@@ -11,17 +12,16 @@ public class Usuario {
 
     private String nombre;
 
-
-    public void setPeliculaList(List<Pelicula> peliculaList) {
-        this.peliculaList = peliculaList;
-    }
-
     private List<Pelicula> peliculaList;
 
     public Usuario(Integer ID, String nombre) {
         this.ID = ID;
         this.nombre = nombre;
         this.peliculaList= new ArrayList<>();
+    }
+
+    public void addPelicula(Pelicula pelicula){
+        peliculaList.add(pelicula);
     }
 
     public Integer getID() {
@@ -39,4 +39,18 @@ public class Usuario {
                 ", nombre='" + nombre + '\'' +
                 '}';
     }
+
+    public List<Pelicula> getPeliculaList(){
+        return peliculaList;
+    }
+
+    public void setList(List<Pelicula> list){
+        this.peliculaList= list;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID);
+    }
+
 }
